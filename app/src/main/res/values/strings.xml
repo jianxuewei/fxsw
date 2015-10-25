@@ -4,4 +4,6 @@
     <string name="string_show_progress_dialog">Show ProgressDialog</string>
     <string name="notes">Notes</string>
     <string name="data_loading">Data is Loading</string>
+    <string name="title_activity_list_view">ListViewActivity</string>
+    <string name="string_show_listview">show listview</string>
 </resources>
