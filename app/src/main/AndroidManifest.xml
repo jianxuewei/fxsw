@@ -27,6 +27,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fxsw.fxsw.GuideActivity" />
         </activity>
+        <activity
+            android:name=".ExpanActivity"
+            android:label="@string/title_activity_expan"
+            android:parentActivityName=".GuideActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fxsw.fxsw.GuideActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -24,6 +24,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         setSupportActionBar(toolbar);
         findViewById(R.id.button_progress_dialog).setOnClickListener(this);
         findViewById(R.id.button_show_listview).setOnClickListener(this);
+        findViewById(R.id.button_show_expandablelistview).setOnClickListener(this);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
     }
@@ -97,6 +98,9 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 Intent intent =new Intent(GuideActivity.this,ListViewActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.button_show_expandablelistview:
+                Intent intent1=new Intent(GuideActivity.this,ExpanActivity.class);
+                startActivity(intent1);
             default:
                 break;
         }

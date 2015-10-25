@@ -20,5 +20,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_show_listview"
         android:text="@string/string_show_listview"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_show_expandablelistview"
+        android:text="@string/string_show_expandable_listview"/>
 
 </LinearLayout>
