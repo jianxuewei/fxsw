@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ private List<String> list=new ArrayList<>();
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                new AsyncTask<Void,Void,Void>(){
+                new AsyncTask<Void, Void, Void>() {
                     @Override
                     protected Void doInBackground(Void... params) {
 //                        try {
@@ -64,6 +65,8 @@ private List<String> list=new ArrayList<>();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        PullToRefreshExpandableListView expandableListView = (PullToRefreshExpandableListView) findViewById(R.id.expandableLV);
+
     }
 
     private void initList() {
