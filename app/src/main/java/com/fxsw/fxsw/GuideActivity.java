@@ -1,6 +1,7 @@
 package com.fxsw.fxsw;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +23,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         findViewById(R.id.button_progress_dialog).setOnClickListener(this);
+        findViewById(R.id.button_show_listview).setOnClickListener(this);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
     }
@@ -90,6 +92,10 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                       handler.sendMessage(message);
                     }
                 }).start();
+                break;
+            case  R.id.button_show_listview:
+                Intent intent =new Intent(GuideActivity.this,ListViewActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
