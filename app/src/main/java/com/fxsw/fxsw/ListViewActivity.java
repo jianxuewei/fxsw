@@ -1,5 +1,6 @@
 package com.fxsw.fxsw;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,14 +27,32 @@ private List<String> list=new ArrayList<>();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
-        PullToRefreshListView listView= (PullToRefreshListView) findViewById(R.id.pull_to_refresh_listview);
+        final PullToRefreshListView listView= (PullToRefreshListView) findViewById(R.id.pull_to_refresh_listview);
         initList();
         ListAdapter adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,list);
         listView.setAdapter(adapter);
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                
+                new AsyncTask<Void,Void,Void>(){
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        list.add("foo");
+                        list.add("bar");
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        listView.onRefreshComplete();
+                        super.onPostExecute(aVoid);
+                    }
+                }.execute();
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
