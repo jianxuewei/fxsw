@@ -1,11 +1,16 @@
 package com.fxsw.fxsw;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.fxsw.models.Fruit;
 
 public class FruitDetailActivity extends AppCompatActivity {
 
@@ -25,6 +30,20 @@ public class FruitDetailActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        initView();
+
+    }
+
+    private void initView() {
+        Intent intent=getIntent();
+        Fruit fruit=(Fruit)intent.getSerializableExtra("fruit");
+        TextView tvName= (TextView) findViewById(R.id.tvName);
+        ImageView imageView= (ImageView) findViewById(R.id.imageView_fruit);
+        TextView tvDesprition= (TextView) findViewById(R.id.tv_description);
+
+        tvName.setText(fruit.getName());
+        imageView.setImageResource(fruit.getImgId());
+        tvDesprition.setText(fruit.getDescription());
     }
 
 }

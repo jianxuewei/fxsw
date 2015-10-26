@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -92,14 +91,14 @@ private List<String> list=new ArrayList<>();
 //                showPopupWindow(view);
             }
         });
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         PullToRefreshExpandableListView expandableListView = (PullToRefreshExpandableListView) findViewById(R.id.expandableLV);
 
@@ -151,10 +150,10 @@ private List<String> list=new ArrayList<>();
     }
 
     private String[] names={"apple","apricot","banana","cherry","kiwi","lemon","orange",
-            "pear","peach","strawberry","tomato"};
+            "pear","peach","tomato","strawberry"};
     private int[] imgIds={R.drawable.apple512,R.drawable.apricot512,R.drawable.banana512,R.drawable.cherry512,
-            R.drawable.kiwi512,R.drawable.lemon512,R.drawable.lemon512,R.drawable.orange512,R.drawable.pear512,R.drawable.peach512,
-            R.drawable.strawberry512,R.drawable.tomato512};
+            R.drawable.kiwi512,R.drawable.lemon512,R.drawable.orange512,R.drawable.pear512,R.drawable.peach512,
+            R.drawable.tomato512,R.drawable.strawberry512};
     private List<Fruit> fruitList=new ArrayList<>();
     private List<Fruit> initFruitList(){
 
