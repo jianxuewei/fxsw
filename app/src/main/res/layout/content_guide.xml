@@ -25,5 +25,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_show_expandablelistview"
         android:text="@string/string_show_expandable_listview"/>
+    <!--<ImageView-->
+        <!--android:layout_width="32dp"-->
+        <!--android:layout_height="32dp"-->
+        <!--android:src="@drawable/apple512"/>-->
 
 </LinearLayout>
