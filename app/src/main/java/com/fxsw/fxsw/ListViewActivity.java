@@ -79,7 +79,7 @@ private List<String> list=new ArrayList<>();
                 }
                 int realPosition= (int) id;
                 Fruit fruit=fruitList.get(realPosition);
-                fruit.setDescription("this is "+fruit.getName()+",it is good for your health .please eat it everyday!Enjoy it !");
+                fruit.setDescription("This is "+fruit.getName()+",it is good for your health.\n Please eat it everyday!\n Enjoy it !");
                 Intent intent=new Intent(ListViewActivity.this,FruitDetailActivity.class);
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("fruit",fruit);

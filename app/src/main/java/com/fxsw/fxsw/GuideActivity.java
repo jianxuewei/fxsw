@@ -22,9 +22,12 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_guide);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         findViewById(R.id.button_progress_dialog).setOnClickListener(this);
         findViewById(R.id.button_show_listview).setOnClickListener(this);
         findViewById(R.id.button_show_expandablelistview).setOnClickListener(this);
+        findViewById(R.id.button_show_chat).setOnClickListener(this);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
     }
@@ -73,6 +76,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                 break;
+
             case R.id.button_progress_dialog:
                 progressDialog=new ProgressDialog(GuideActivity.this);
                 progressDialog.setTitle(R.string.notes);
@@ -94,13 +98,19 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                     }
                 }).start();
                 break;
+
             case  R.id.button_show_listview:
-                Intent intent =new Intent(GuideActivity.this,ListViewActivity.class);
-                startActivity(intent);
+               startActivity(new Intent(GuideActivity.this,ListViewActivity.class));
                 break;
+
             case R.id.button_show_expandablelistview:
-                Intent intent1=new Intent(GuideActivity.this,ExpanActivity.class);
-                startActivity(intent1);
+                startActivity(new Intent(GuideActivity.this,ExpanActivity.class));
+                break;
+
+            case R.id.button_show_chat:
+                startActivity(new Intent(GuideActivity.this,ChatActivity.class));
+                break;
+
             default:
                 break;
         }

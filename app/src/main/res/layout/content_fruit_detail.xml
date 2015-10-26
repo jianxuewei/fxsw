@@ -38,6 +38,9 @@
             android:text="@string/string_fruit_description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textStyle="italic"
+            android:textColor="@color/blue"
+            android:lineSpacingExtra="@dimen/indicator_internal_padding"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/tv_description"/>
     </ScrollView>

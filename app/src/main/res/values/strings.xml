@@ -16,4 +16,10 @@
     <string name="title_activity_fruit_detail">FruitDetailActivity</string>
     <string name="string_fruit_description">this is a fruit and it\'s good for your health.....</string>
 
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="string_show_chat_activity">show chat activity</string>
+    <string name="action_send">send</string>
+
 </resources>

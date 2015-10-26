@@ -45,6 +45,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fxsw.fxsw.ListViewActivity" />
         </activity>
+        <activity
+            android:name=".ChatActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_chat"
+            android:parentActivityName=".GuideActivity"
+            android:theme="@style/FullscreenTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fxsw.fxsw.GuideActivity" />
+        </activity>
     </application>
 
 </manifest>
