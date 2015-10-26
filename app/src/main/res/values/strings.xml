@@ -8,5 +8,12 @@
     <string name="string_show_listview">show listview</string>
     <string name="title_activity_expan">ExpanActivity</string>
     <string name="string_show_expandable_listview">show expandable listview</string>
+
     <string name="title_contacts">CONTACTS LIST</string>
+=======
+    <string name="action_purchase">purchase</string>
+    <string name="welcome_to_purchase">welcome to purchase</string>
+    <string name="title_activity_fruit_detail">FruitDetailActivity</string>
+    <string name="string_fruit_description">this is a fruit and it\'s good for your health.....</string>
+
 </resources>

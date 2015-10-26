@@ -36,6 +36,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fxsw.fxsw.GuideActivity" />
         </activity>
+        <activity
+            android:name=".FruitDetailActivity"
+            android:label="@string/title_activity_fruit_detail"
+            android:parentActivityName=".ListViewActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fxsw.fxsw.ListViewActivity" />
+        </activity>
     </application>
 
 </manifest>
