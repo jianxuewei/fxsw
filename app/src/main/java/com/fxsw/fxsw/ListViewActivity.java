@@ -6,15 +6,21 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +42,7 @@ private List<String> list=new ArrayList<>();
         setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
         final PullToRefreshListView listView= (PullToRefreshListView) findViewById(R.id.pull_to_refresh_listview);
-        initList();
+
 //        ListAdapter adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,list);
 
         FruitAdapter adapter=new FruitAdapter(this,R.layout.fruit_item,initFruitList());
@@ -76,7 +82,8 @@ private List<String> list=new ArrayList<>();
                 int realPosition= (int) id;
                 Fruit fruit=fruitList.get(realPosition);
 //                Fruit item=getItem(realPosition);
-                Toast.makeText(ListViewActivity.this,"this is "+fruit.getName().toString(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ListViewActivity.this,"this is "+fruit.getName().toString(),Toast.LENGTH_SHORT).show();
+                showPopupWindow(view);
             }
         });
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -92,10 +99,55 @@ private List<String> list=new ArrayList<>();
 
     }
 
-    private void initList() {
-        list.add("hello");
-        list .add("world");
+    private void showPopupWindow(View view) {
+        View contentView=LayoutInflater.from(ListViewActivity.this).inflate(R.layout.pop_window,null);
+        Button btnShowPurchase= (Button) contentView.findViewById(R.id.button_purchase);
+        TextView textView= (TextView) contentView.findViewById(R.id.tv);
+
+        textView.setText(((TextView)view.findViewById(R.id.textview)).getText());
+        btnShowPurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v,"replace with your own action",Snackbar.LENGTH_SHORT).setAction("Action",null).show();
+
+            }
+        });
+        final PopupWindow popupWindow = new PopupWindow(contentView,
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+
+        popupWindow.setTouchable(true);
+
+        popupWindow.setTouchInterceptor(new View.OnTouchListener() {
+
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                return false;
+//            }
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                Log.i("mengdd", "onTouch : ");
+
+                return false;
+                // 这里如果返回true的话，touch事件将被拦截
+                // 拦截后 PopupWindow的onTouchEvent不被调用，这样点击外部区域无法dismiss
+            }
+        });
+
+        // 如果不设置PopupWindow的背景，无论是点击外部区域还是Back键都无法dismiss弹框
+        // 我觉得这里是API的一个bug
+        popupWindow.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.alert_dark_frame));
+
+        // 设置好参数之后再show
+        popupWindow.showAsDropDown(view);
+
     }
+
+    //    private void initList() {
+//        list.add("hello");
+//        list .add("world");
+//    }
     public class Fruit{
         private String name;
         private int imgId;

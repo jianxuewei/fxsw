@@ -8,4 +8,6 @@
     <string name="string_show_listview">show listview</string>
     <string name="title_activity_expan">ExpanActivity</string>
     <string name="string_show_expandable_listview">show expandable listview</string>
+    <string name="action_purchase">purchase</string>
+    <string name="welcome_to_purchase">welcome to purchase</string>
 </resources>
