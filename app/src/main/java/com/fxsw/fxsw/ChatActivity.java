@@ -1,43 +1,60 @@
 package com.fxsw.fxsw;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+<<<<<<< HEAD
 import android.widget.ListView;
+=======
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.fxsw.models.Message;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+>>>>>>> f243f11de772e94ae1fdb24f29ae7159e91a8429
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class ChatActivity extends AppCompatActivity {
-    /**
-     * Whether or not the system UI should be auto-hidden after
-     * {@link #AUTO_HIDE_DELAY_MILLIS} milliseconds.
-     */
-    private static final boolean AUTO_HIDE = true;
+public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
 
-    /**
-     * If {@link #AUTO_HIDE} is set, the number of milliseconds to wait after
-     * user interaction before hiding the system UI.
-     */
-    private static final int AUTO_HIDE_DELAY_MILLIS = 3000;
 
-    /**
-     * Some older devices needs a small delay between UI widget updates
-     * and a change of the status and navigation bar.
-     */
-    private static final int UI_ANIMATION_DELAY = 300;
-
+<<<<<<< HEAD
     private ListView mContentView;
     private View mControlsView;
     private boolean mVisible;
+=======
+   private int typeSwitch=0;
+    private ListView mContentView;
+    private ChatAdapter adapter;
+    private List<Message> msgList;
+    private EditText etInput;
+>>>>>>> f243f11de772e94ae1fdb24f29ae7159e91a8429
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +65,10 @@ public class ChatActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        initMsgList();
+        mContentView = (ListView) findViewById(R.id.lv_message);
 
+<<<<<<< HEAD
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = (ListView) findViewById(R.id.lv_message);
@@ -73,122 +93,96 @@ public class ChatActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+=======
+        mContentView.setAdapter(adapter=new ChatAdapter(this,R.layout.content_message_item,msgList));
+        findViewById(R.id.button_send_message).setOnClickListener(this);
+//        getWindow().setSoftInputMode(
+//                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE| WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+>>>>>>> f243f11de772e94ae1fdb24f29ae7159e91a8429
+    }
+
+    private void initMsgList() {
+        msgList=new ArrayList<>() ;
+        Message msg1,msg2,msg3;
+        msg1=new Message(0,"hello");
+        msg2=new Message(1,"who's that?");
+        msg3=new Message(0,"i am hello world");
+        msgList.add(msg1);
+        msgList.add(msg2);
+        msgList.add(msg3);
     }
 
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+    public void onClick(View v) {
+        etInput= (EditText) findViewById(R.id.et_input);
+        String content=etInput.getText().toString();
+        switch (v.getId())
+        {
+            case R.id.button_send_message:
+                if(!"".equals(content)){
 
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
-        delayedHide(100);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            // This ID represents the Home or Up button.
-            NavUtils.navigateUpFromSameTask(this);
-            return true;
+                    Message msg=new Message(typeSwitch%2,content);
+                    msgList.add(msg);
+                    adapter.notifyDataSetChanged();
+                    mContentView.setSelection(msgList.size());
+                    typeSwitch++;
+                }
+                InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                manager.hideSoftInputFromWindow(v.getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+                etInput.setText("");
+                break;
+            default:
+                break;
         }
-        return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private final View.OnTouchListener mDelayHideTouchListener = new View.OnTouchListener() {
+    private class ChatAdapter extends ArrayAdapter<Message> {
+        private int resourceId;
+        public ChatAdapter(Context context, int resource, List<Message> list) {
+            super(context, resource, list);
+            resourceId=resource;
+        }
+
         @Override
-        public boolean onTouch(View view, MotionEvent motionEvent) {
-            if (AUTO_HIDE) {
-                delayedHide(AUTO_HIDE_DELAY_MILLIS);
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view;
+            ViewHolder viewHolder;
+            Message msg= getItem(position);
+            if (convertView==null){
+                viewHolder=new ViewHolder();
+                view= LayoutInflater.from(getContext()).inflate(resourceId,null);
+                viewHolder.layout_left=view.findViewById(R.id.layout_left);
+                viewHolder.layout_right=view.findViewById(R.id.layout_right);
+                viewHolder.message_left= (TextView) view.findViewById(R.id.message_left);
+                viewHolder.message_right= (TextView) view.findViewById(R.id.message_right);
+                viewHolder.message_sender_left= (TextView) view.findViewById(R.id.message_sender_left);
+                viewHolder.message_sender_right= (TextView) view.findViewById(R.id.message_sender_right);
+                view.setTag(viewHolder);
+            }else {
+                view=convertView;
+                viewHolder= (ViewHolder) view.getTag();
             }
-            return false;
-        }
-    };
-
-    private void toggle() {
-        if (mVisible) {
-            hide();
-        } else {
-            show();
-        }
-    }
-
-    private void hide() {
-        // Hide UI first
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-        mControlsView.setVisibility(View.GONE);
-        mVisible = false;
-
-        // Schedule a runnable to remove the status and navigation bar after a delay
-        mHideHandler.removeCallbacks(mShowPart2Runnable);
-        mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY);
-    }
-
-    private final Runnable mHidePart2Runnable = new Runnable() {
-        @SuppressLint("InlinedApi")
-        @Override
-        public void run() {
-            // Delayed removal of status and navigation bar
-
-            // Note that some of these constants are new as of API 16 (Jelly Bean)
-            // and API 19 (KitKat). It is safe to use them, as they are inlined
-            // at compile-time and do nothing on earlier devices.
-            mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-        }
-    };
-
-    @SuppressLint("InlinedApi")
-    private void show() {
-        // Show the system bar
-        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-        mVisible = true;
-
-        // Schedule a runnable to display UI elements after a delay
-        mHideHandler.removeCallbacks(mHidePart2Runnable);
-        mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY);
-    }
-
-    private final Runnable mShowPart2Runnable = new Runnable() {
-        @Override
-        public void run() {
-            // Delayed display of UI elements
-            ActionBar actionBar = getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.show();
+            if(msg.getType()==0){
+                viewHolder.layout_left.setVisibility(View.VISIBLE);
+                viewHolder.layout_right.setVisibility(View.GONE);
+                viewHolder.message_left.setText(msg.getContent());
+                viewHolder.message_sender_left.setText(msg.getSender());
+            }else {
+                viewHolder.layout_left.setVisibility(View.GONE);
+                viewHolder.layout_right.setVisibility(View.VISIBLE);
+                viewHolder.message_right.setText(msg.getContent());
+                viewHolder.message_sender_right.setText(msg.getSender());
             }
-            mControlsView.setVisibility(View.VISIBLE);
+            return view;
         }
-    };
-
-    private final Handler mHideHandler = new Handler();
-    private final Runnable mHideRunnable = new Runnable() {
-        @Override
-        public void run() {
-            hide();
-        }
-    };
-
-    /**
-     * Schedules a call to hide() in [delay] milliseconds, canceling any
-     * previously scheduled calls.
-     */
-    private void delayedHide(int delayMillis) {
-        mHideHandler.removeCallbacks(mHideRunnable);
-        mHideHandler.postDelayed(mHideRunnable, delayMillis);
+    }
+    class ViewHolder {
+        View layout_left;
+        View layout_right;
+        TextView message_left;
+        TextView message_right;
+        TextView message_sender_left;
+        TextView message_sender_right;
     }
 }
