@@ -22,5 +22,6 @@
     <string name="string_show_chat_activity">show chat activity</string>
     <string name="action_send">send</string>
     <string name="str_please_input_here">please input here</string>
+    <string name="str_sender">message sender</string>
 
 </resources>

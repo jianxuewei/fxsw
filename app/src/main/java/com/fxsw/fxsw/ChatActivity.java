@@ -90,6 +90,8 @@ public class ChatActivity extends AppCompatActivity {
                 viewHolder.layout_right=view.findViewById(R.id.layout_right);
                 viewHolder.message_left= (TextView) view.findViewById(R.id.message_left);
                 viewHolder.message_right= (TextView) view.findViewById(R.id.message_right);
+                viewHolder.message_sender_left= (TextView) view.findViewById(R.id.message_sender_left);
+                viewHolder.message_sender_right= (TextView) view.findViewById(R.id.message_sender_right);
                 view.setTag(viewHolder);
             }else {
                 view=convertView;
@@ -98,9 +100,11 @@ public class ChatActivity extends AppCompatActivity {
             if(msg.getType()==0){
                 viewHolder.layout_right.setVisibility(View.GONE);
                 viewHolder.message_left.setText(msg.getContent());
+                viewHolder.message_sender_left.setText(msg.getSender());
             }else {
                 viewHolder.layout_left.setVisibility(View.GONE);
                 viewHolder.message_right.setText(msg.getContent());
+                viewHolder.message_sender_right.setText(msg.getSender());
             }
             return view;
         }
@@ -110,5 +114,7 @@ public class ChatActivity extends AppCompatActivity {
         View layout_right;
         TextView message_left;
         TextView message_right;
+        TextView message_sender_left;
+        TextView message_sender_right;
     }
 }
