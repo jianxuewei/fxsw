@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.fxsw.fxsw.dummy.DummyContent;
 import com.fxsw.models.Info;
+import com.fxsw.models.MyInfoAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public class InfoFragment extends Fragment implements AbsListView.OnItemClickLis
      */
     public InfoFragment() {
     }
-
+    List<Info> list=new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,15 +76,19 @@ public class InfoFragment extends Fragment implements AbsListView.OnItemClickLis
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        List<Info> list=new ArrayList<>();
-        Info myInfo1=new Info(mParam1);
+
+        Info myInfo1=new Info(mParam1,R.drawable.document_text);
         list.add(myInfo1);
-        Info myInfo2=new Info(mParam2);
+        Info myInfo2=new Info(mParam2,R.drawable.heart);
         list.add(myInfo2);
+        Info myInfo3=new Info("我的离线",R.drawable.save);
+        list.add(myInfo3);
+        Info myInfo4=new Info("VIP中心",R.drawable.vip);
+        list.add(myInfo4);
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
-//        mAdapter=new ListViewActivity.InfoAdapter(get)
+//        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+//                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+        mAdapter=new MyInfoAdapter(getActivity(),R.layout.fruit_item,list);
 }
 
     @Override
@@ -121,11 +125,13 @@ public class InfoFragment extends Fragment implements AbsListView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != mListener) {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+
+        if(id==-1){
+            return;
         }
+        int realPosition= (int) id;
+        Info info = list.get(realPosition);
+        Toast.makeText(getActivity(),info.getName().toString(),Toast.LENGTH_SHORT).show();
     }
 
     /**

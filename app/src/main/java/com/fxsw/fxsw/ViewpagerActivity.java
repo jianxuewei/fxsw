@@ -47,14 +47,13 @@ public class ViewpagerActivity extends AppCompatActivity implements InfoFragment
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            if(position==2) {
-                return  InfoFragment.newInstance("foo","bar");
-            }else {
-                return PlaceholderFragment.newInstance(position + 1);
-            }
+            switch (position){
+                case 2:
+                    return  InfoFragment.newInstance("学习课程","我的收藏");
 
+                default:
+                    return PlaceholderFragment.newInstance(position + 1);
+            }
         }
 
         @Override
