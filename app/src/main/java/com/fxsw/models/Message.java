@@ -8,6 +8,11 @@ public class Message {
     private final int RECEIVE=1;
     private String sender;
 
+    public Message(int type, String content) {
+        this.type = type;
+        this.content = content;
+    }
+
     public String getSender() {
         return sender;
     }
