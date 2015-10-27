@@ -18,7 +18,9 @@ import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,13 +37,14 @@ import java.util.ListIterator;
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-
+   private int typeSwitch=0;
     private ListView mContentView;
-
+    private ChatAdapter adapter;
     private List<Message> msgList;
+    private EditText etInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +57,11 @@ public class ChatActivity extends AppCompatActivity {
         }
         initMsgList();
         mContentView = (ListView) findViewById(R.id.lv_message);
-        mContentView.setAdapter(new ChatAdapter(this,R.layout.content_message_item,msgList));
 
-        getWindow().setSoftInputMode(
-                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE| WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        mContentView.setAdapter(adapter=new ChatAdapter(this,R.layout.content_message_item,msgList));
+        findViewById(R.id.button_send_message).setOnClickListener(this);
+//        getWindow().setSoftInputMode(
+//                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE| WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
     }
 
     private void initMsgList() {
@@ -69,6 +73,31 @@ public class ChatActivity extends AppCompatActivity {
         msgList.add(msg1);
         msgList.add(msg2);
         msgList.add(msg3);
+    }
+
+    @Override
+    public void onClick(View v) {
+        etInput= (EditText) findViewById(R.id.et_input);
+        String content=etInput.getText().toString();
+        switch (v.getId())
+        {
+            case R.id.button_send_message:
+                if(!"".equals(content)){
+
+                    Message msg=new Message(typeSwitch%2,content);
+                    msgList.add(msg);
+                    adapter.notifyDataSetChanged();
+                    mContentView.setSelection(msgList.size());
+                    typeSwitch++;
+                }
+                InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                manager.hideSoftInputFromWindow(v.getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+                etInput.setText("");
+                break;
+            default:
+                break;
+        }
     }
 
     private class ChatAdapter extends ArrayAdapter<Message> {
@@ -98,11 +127,13 @@ public class ChatActivity extends AppCompatActivity {
                 viewHolder= (ViewHolder) view.getTag();
             }
             if(msg.getType()==0){
+                viewHolder.layout_left.setVisibility(View.VISIBLE);
                 viewHolder.layout_right.setVisibility(View.GONE);
                 viewHolder.message_left.setText(msg.getContent());
                 viewHolder.message_sender_left.setText(msg.getSender());
             }else {
                 viewHolder.layout_left.setVisibility(View.GONE);
+                viewHolder.layout_right.setVisibility(View.VISIBLE);
                 viewHolder.message_right.setText(msg.getContent());
                 viewHolder.message_sender_right.setText(msg.getSender());
             }
