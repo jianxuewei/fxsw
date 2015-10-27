@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.MenuItem;
 import android.support.v4.app.NavUtils;
+import android.widget.ListView;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -34,7 +35,7 @@ public class ChatActivity extends AppCompatActivity {
      */
     private static final int UI_ANIMATION_DELAY = 300;
 
-    private View mContentView;
+    private ListView mContentView;
     private View mControlsView;
     private boolean mVisible;
 
@@ -50,7 +51,7 @@ public class ChatActivity extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.lv_message);
+        mContentView = (ListView) findViewById(R.id.lv_message);
 
 
         // Set up the user interaction to manually show or hide the system UI.

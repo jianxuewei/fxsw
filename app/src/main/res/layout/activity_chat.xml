@@ -12,12 +12,10 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView android:id="@+id/lv_message" android:layout_width="match_parent"
+        <ListView android:id="@+id/lv_message" android:layout_width="match_parent"
             android:layout_height="0dp" android:layout_weight="1"
-            android:duplicateParentState="true" android:clickable="true"
             android:keepScreenOn="true" android:textColor="#33b5e5"
-            android:textStyle="bold" android:textSize="50sp" android:gravity="center"
-            android:text="djljf"
+            android:textStyle="bold"  android:gravity="center"
              />
         <Button
             android:id="@+id/butto_send_message"
