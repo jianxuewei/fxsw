@@ -1,41 +1,23 @@
 package com.fxsw.fxsw;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
-<<<<<<< HEAD
-import android.widget.ListView;
-=======
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.fxsw.models.Message;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
->>>>>>> f243f11de772e94ae1fdb24f29ae7159e91a8429
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -44,17 +26,15 @@ import java.util.ListIterator;
 public class ChatActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-<<<<<<< HEAD
-    private ListView mContentView;
-    private View mControlsView;
-    private boolean mVisible;
-=======
+
+
+
    private int typeSwitch=0;
     private ListView mContentView;
     private ChatAdapter adapter;
     private List<Message> msgList;
     private EditText etInput;
->>>>>>> f243f11de772e94ae1fdb24f29ae7159e91a8429
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,37 +48,26 @@ public class ChatActivity extends AppCompatActivity implements View.OnClickListe
         initMsgList();
         mContentView = (ListView) findViewById(R.id.lv_message);
 
-<<<<<<< HEAD
-        mVisible = true;
-        mControlsView = findViewById(R.id.fullscreen_content_controls);
+
+
+
         mContentView = (ListView) findViewById(R.id.lv_message);
 
 
         // Set up the user interaction to manually show or hide the system UI.
-        if(mContentView!=null){
-            Log.d("mContentView","is not null");
-            mContentView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("mContentView","is clicked");
-                    toggle();
 
-                }
-
-            });
-        }
 
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-=======
+
+
         mContentView.setAdapter(adapter=new ChatAdapter(this,R.layout.content_message_item,msgList));
         findViewById(R.id.button_send_message).setOnClickListener(this);
 //        getWindow().setSoftInputMode(
 //                WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE| WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
->>>>>>> f243f11de772e94ae1fdb24f29ae7159e91a8429
+
     }
 
     private void initMsgList() {

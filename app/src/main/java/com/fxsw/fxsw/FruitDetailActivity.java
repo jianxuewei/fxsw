@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fxsw.models.Fruit;
+import com.fxsw.models.Info;
 
 public class FruitDetailActivity extends AppCompatActivity {
 
@@ -36,14 +36,14 @@ public class FruitDetailActivity extends AppCompatActivity {
 
     private void initView() {
         Intent intent=getIntent();
-        Fruit fruit=(Fruit)intent.getSerializableExtra("fruit");
+        Info info =(Info)intent.getSerializableExtra("info");
         TextView tvName= (TextView) findViewById(R.id.tvName);
         ImageView imageView= (ImageView) findViewById(R.id.imageView_fruit);
         TextView tvDesprition= (TextView) findViewById(R.id.tv_description);
 
-        tvName.setText(fruit.getName());
-        imageView.setImageResource(fruit.getImgId());
-        tvDesprition.setText(fruit.getDescription());
+        tvName.setText(info.getName());
+        imageView.setImageResource(info.getImgId());
+        tvDesprition.setText(info.getDescription());
     }
 
 }

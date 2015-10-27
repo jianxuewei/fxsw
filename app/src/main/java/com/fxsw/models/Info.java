@@ -8,7 +8,7 @@ import java.io.Serializable;
 //        list.add("hello");
 //        list .add("world");
 //    }
-public class Fruit implements Serializable {
+public class Info implements Serializable {
     private String name;
     private int imgId;
 
@@ -37,8 +37,11 @@ public class Fruit implements Serializable {
     public void setImgId(int imgId) {
         this.imgId = imgId;
     }
+    public Info(String name){
+        this.name=name;
+    }
 
-    public Fruit(String name, int imgId) {
+    public Info(String name, int imgId) {
         this.name = name;
         this.imgId = imgId;
     }

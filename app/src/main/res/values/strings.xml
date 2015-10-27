@@ -14,7 +14,7 @@
     <string name="action_purchase">purchase</string>
     <string name="welcome_to_purchase">welcome to purchase</string>
     <string name="title_activity_fruit_detail">FruitDetailActivity</string>
-    <string name="string_fruit_description">this is a fruit and it\'s good for your health.....</string>
+    <string name="string_fruit_description">this is a info and it\'s good for your health.....</string>
 
     <string name="title_activity_chat">ChatActivity</string>
     <string name="dummy_button">Dummy Button</string>
@@ -23,5 +23,11 @@
     <string name="action_send">send</string>
     <string name="str_please_input_here">please input here</string>
     <string name="str_sender">message sender</string>
+    <string name="title_activity_viewpager">ViewpagerActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="string_show_viewpager_activity">show viewpager activity</string>
+    <string name="discovery">发现</string>
+    <string name="kecheng">课程</string>
+    <string name="my">我的</string>
 
 </resources>

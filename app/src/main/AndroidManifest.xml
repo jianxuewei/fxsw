@@ -51,7 +51,16 @@
             android:label="@string/title_activity_chat"
             android:parentActivityName=".GuideActivity"
             android:theme="@style/FullscreenTheme"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fxsw.fxsw.GuideActivity" />
+        </activity>
+        <activity
+            android:name=".ViewpagerActivity"
+            android:label="@string/title_activity_viewpager"
+            android:parentActivityName=".GuideActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.fxsw.fxsw.GuideActivity" />

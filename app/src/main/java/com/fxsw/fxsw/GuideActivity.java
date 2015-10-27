@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.button_show_listview).setOnClickListener(this);
         findViewById(R.id.button_show_expandablelistview).setOnClickListener(this);
         findViewById(R.id.button_show_chat).setOnClickListener(this);
+        findViewById(R.id.button_show_viewpager).setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
@@ -100,7 +102,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case  R.id.button_show_listview:
-               startActivity(new Intent(GuideActivity.this,ListViewActivity.class));
+               startActivity(new Intent(GuideActivity.this, ListViewActivity.class));
                 break;
 
             case R.id.button_show_expandablelistview:
@@ -109,6 +111,11 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.button_show_chat:
                 startActivity(new Intent(GuideActivity.this,ChatActivity.class));
+                break;
+
+            case R.id.button_show_viewpager:
+                Log.d("viewpager","start");
+                startActivity(new Intent(GuideActivity.this, ViewpagerActivity.class));
                 break;
 
             default:

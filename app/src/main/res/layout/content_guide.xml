@@ -30,6 +30,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_show_chat"
         android:text="@string/string_show_chat_activity"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_show_viewpager"
+        android:text="@string/string_show_viewpager_activity"/>
     <!--<ImageView-->
         <!--android:layout_width="32dp"-->
         <!--android:layout_height="32dp"-->

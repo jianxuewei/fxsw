@@ -21,7 +21,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.fxsw.models.Fruit;
+import com.fxsw.models.Info;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
@@ -43,7 +43,7 @@ private List<String> list=new ArrayList<>();
 
 //        ListAdapter adapter=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,list);
 
-        FruitAdapter adapter=new FruitAdapter(this,R.layout.fruit_item,initFruitList());
+        InfoAdapter adapter=new InfoAdapter(this,R.layout.fruit_item,initFruitList());
         listView.setAdapter(adapter);
         listView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
@@ -51,15 +51,9 @@ private List<String> list=new ArrayList<>();
                 new AsyncTask<Void, Void, Void>() {
                     @Override
                     protected Void doInBackground(Void... params) {
-//                        try {
-//                            Thread.sleep(1000);
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//                        list.add("foo");
-//                        list.add("bar");
-                        Fruit fruit = new Fruit("apple2", R.drawable.apple512);
-                        fruitList.add(fruit);
+
+                        Info info = new Info("apple2", R.drawable.apple512);
+                        infoList.add(info);
                         return null;
                     }
 
@@ -78,27 +72,17 @@ private List<String> list=new ArrayList<>();
                     return;
                 }
                 int realPosition= (int) id;
-                Fruit fruit=fruitList.get(realPosition);
-                fruit.setDescription("This is "+fruit.getName()+",it is good for your health.\n Please eat it everyday!\n Enjoy it !");
+                Info info = infoList.get(realPosition);
+                info.setDescription("This is "+ info.getName()+",it is good for your health.\n Please eat it everyday!\n Enjoy it !");
                 Intent intent=new Intent(ListViewActivity.this,FruitDetailActivity.class);
                 Bundle bundle=new Bundle();
-                bundle.putSerializable("fruit",fruit);
+                bundle.putSerializable("info", info);
                 intent.putExtras(bundle);
                 startActivity(intent);
-                //intent.putExtra("fruit",fruit);
-//                Fruit item=getItem(realPosition);
-//                Toast.makeText(ListViewActivity.this,"this is "+fruit.getName().toString(),Toast.LENGTH_SHORT).show();
-//                showPopupWindow(view);
+
             }
         });
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         PullToRefreshExpandableListView expandableListView = (PullToRefreshExpandableListView) findViewById(R.id.expandableLV);
 
@@ -154,36 +138,39 @@ private List<String> list=new ArrayList<>();
     private int[] imgIds={R.drawable.apple512,R.drawable.apricot512,R.drawable.banana512,R.drawable.cherry512,
             R.drawable.kiwi512,R.drawable.lemon512,R.drawable.orange512,R.drawable.pear512,R.drawable.peach512,
             R.drawable.tomato512,R.drawable.strawberry512};
-    private List<Fruit> fruitList=new ArrayList<>();
-    private List<Fruit> initFruitList(){
+    private List<Info> infoList =new ArrayList<>();
+    private List<Info> initFruitList(){
 
         for (int i = 0; i < names.length; i++) {
-            Fruit fruit=new Fruit(names[i],imgIds[i]);
-            fruitList.add(fruit);
+            Info info =new Info(names[i],imgIds[i]);
+            infoList.add(info);
         }
-        return fruitList;
+        return infoList;
     }
-    class  FruitAdapter extends ArrayAdapter{
+    class InfoAdapter extends ArrayAdapter<Info>{
         int resourceId;
+        List<Info> list=new ArrayList<>();
 
-        public FruitAdapter(Context context, int resource, List<Fruit> objects) {
+        public InfoAdapter(Context context, int resource, List<Info> objects) {
             super(context, resource, objects);
             this.resourceId=resource;
+            this.list=objects;
+
         }
 
         @Override
-        public Fruit getItem(int position) {
-            return fruitList.get(position);
+        public Info getItem(int position) {
+            return list.get(position);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            Fruit fruit=(Fruit)getItem(position);
+            Info info =getItem(position);
             View v= LayoutInflater.from(getContext()).inflate(resourceId,null);
             ImageView imageView=(ImageView)v.findViewById(R.id.imageview);
             TextView textView=(TextView)v.findViewById(R.id.textview);
-            imageView.setImageResource(fruit.getImgId());
-            textView.setText(fruit.getName());
+            imageView.setImageResource(info.getImgId());
+            textView.setText(info.getName());
             return  v;
 
         }
