@@ -31,5 +31,6 @@
     <string name="my">我的</string>
     <string name="action_send_broadcast">send boradcast</string>
     <string name="string_show_sendbroadcast_activity">show sendbroadcast activity</string>
+    <string name="title_activity_file">FileActivity</string>
 
 </resources>
