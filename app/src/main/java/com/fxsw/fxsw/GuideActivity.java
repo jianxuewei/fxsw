@@ -29,6 +29,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.button_show_expandablelistview).setOnClickListener(this);
         findViewById(R.id.button_show_chat).setOnClickListener(this);
         findViewById(R.id.button_show_viewpager).setOnClickListener(this);
+        findViewById(R.id.button_show_sendbroadcast).setOnClickListener(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
@@ -114,8 +115,13 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
             case R.id.button_show_viewpager:
-                Log.d("viewpager","start");
+
                 startActivity(new Intent(GuideActivity.this, ViewpagerActivity.class));
+                break;
+
+            case R.id.button_show_sendbroadcast:
+
+                startActivity(new Intent(GuideActivity.this, SendBroadCastActivity.class));
                 break;
 
             default:

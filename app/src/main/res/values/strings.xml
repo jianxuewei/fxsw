@@ -29,5 +29,7 @@
     <string name="discovery">发现</string>
     <string name="kecheng">课程</string>
     <string name="my">我的</string>
+    <string name="action_send_broadcast">send boradcast</string>
+    <string name="string_show_sendbroadcast_activity">show sendbroadcast activity</string>
 
 </resources>
