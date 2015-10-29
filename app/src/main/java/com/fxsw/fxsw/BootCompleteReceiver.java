@@ -13,7 +13,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.d("debug","receive");
         if(intent.getAction().equals(ACTION)){
-            Log.d("debug","Action is "+ACTION);
+            Log.d("debug", "Action is " + ACTION);
             Intent intentStartGuideAcitivity=new Intent(context,GuideActivity.class);
             intentStartGuideAcitivity.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED|Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
 
