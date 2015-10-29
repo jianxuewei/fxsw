@@ -1,5 +1,6 @@
 package com.fxsw.fxsw;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,20 +12,23 @@ import android.widget.EditText;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class FileActivity extends AppCompatActivity {
-
+    private  EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        EditText editText= (EditText) findViewById(R.id.et_File);
+         editText= (EditText) findViewById(R.id.et_File);
         String inputText=load();
         if(!TextUtils.isEmpty(inputText)){
             editText.setText(inputText);
@@ -65,4 +69,38 @@ public class FileActivity extends AppCompatActivity {
         return content.toString();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        save();
+
+    }
+
+    private void save() {
+        String textToSave=editText.getText().toString();
+        if (TextUtils.isEmpty(textToSave)){
+            return;
+        }else {
+            FileOutputStream out= null;
+            BufferedWriter writer=null;
+            try {
+                out =openFileOutput("data", Context.MODE_PRIVATE);
+                writer=new BufferedWriter(new OutputStreamWriter(out));
+                writer.write(textToSave);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            finally {
+                if(writer!=null){
+                    try {
+                        writer.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+
+        }
+    }
 }

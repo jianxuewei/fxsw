@@ -40,6 +40,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_show_sendbroadcast"
         android:text="@string/string_show_sendbroadcast_activity"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_show_filebroadcast"
+        android:text="@string/string_show_filebroadcast_activity"/>
     <!--<ImageView-->
         <!--android:layout_width="32dp"-->
         <!--android:layout_height="32dp"-->

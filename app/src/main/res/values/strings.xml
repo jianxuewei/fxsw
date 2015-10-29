@@ -32,5 +32,6 @@
     <string name="action_send_broadcast">send boradcast</string>
     <string name="string_show_sendbroadcast_activity">show sendbroadcast activity</string>
     <string name="title_activity_file">FileActivity</string>
+    <string name="string_show_filebroadcast_activity">show file activity</string>
 
 </resources>

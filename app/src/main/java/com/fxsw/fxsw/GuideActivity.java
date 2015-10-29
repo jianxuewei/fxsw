@@ -30,7 +30,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.button_show_chat).setOnClickListener(this);
         findViewById(R.id.button_show_viewpager).setOnClickListener(this);
         findViewById(R.id.button_show_sendbroadcast).setOnClickListener(this);
-
+        findViewById(R.id.button_show_filebroadcast).setOnClickListener(this);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(this);
     }
@@ -123,7 +123,9 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
 
                 startActivity(new Intent(GuideActivity.this, SendBroadCastActivity.class));
                 break;
-
+            case R.id.button_show_filebroadcast:
+                startActivity(new Intent(GuideActivity.this,FileActivity.class));
+                break;
             default:
                 break;
         }
