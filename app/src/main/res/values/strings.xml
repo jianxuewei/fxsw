@@ -93,5 +93,10 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="string_show_mysetting_activity">show my setting</string>
+    <string name="string_show_sqlite_activity">show sqlite activity</string>
+    <string name="action_create_database">create database</string>
+    <string name="action_add_data">add data</string>
+    <string name="action_query_data">query data</string>
+    <string name="action_delete_data">delete data</string>
 
 </resources>

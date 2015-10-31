@@ -84,15 +84,9 @@
             android:label="@string/title_activity_file"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity
-            android:name=".SharedPreferencesActivity"
-            android:label="@string/title_activity_shared_preferences"
-            android:parentActivityName=".GuideActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.fxsw.fxsw.GuideActivity" />
-        </activity>
         <activity android:name=".MySettingActivity" >
+        </activity>
+        <activity android:name=".SqliteActivity" >
         </activity>
     </application>
 
