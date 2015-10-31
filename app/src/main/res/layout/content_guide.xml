@@ -55,9 +55,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_show_sqlite"
         android:text="@string/string_show_sqlite_activity"/>
-    <!--<ImageView-->
-        <!--android:layout_width="32dp"-->
-        <!--android:layout_height="32dp"-->
-        <!--android:src="@drawable/apple512"/>-->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_show_contentprovide"
+        android:text="@string/string_show_contentprovider"/>
 
 </LinearLayout>

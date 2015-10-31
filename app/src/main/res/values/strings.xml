@@ -98,5 +98,7 @@
     <string name="action_add_data">add data</string>
     <string name="action_query_data">query data</string>
     <string name="action_delete_data">delete data</string>
+    <string name="string_show_contentprovider">show content provider</string>
+    <string name="title_activity_content_provider">ContentProviderActivity</string>
 
 </resources>

@@ -3,7 +3,7 @@
     package="com.fxsw.fxsw" >
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -87,6 +87,15 @@
         <activity android:name=".MySettingActivity" >
         </activity>
         <activity android:name=".SqliteActivity" >
+        </activity>
+        <activity
+            android:name=".ContentProviderActivity"
+            android:label="@string/title_activity_content_provider"
+            android:parentActivityName=".GuideActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fxsw.fxsw.GuideActivity" />
         </activity>
     </application>
 

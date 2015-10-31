@@ -1,6 +1,7 @@
 package com.fxsw.fxsw;
 
 import android.app.ProgressDialog;
+import android.content.ContentProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +35,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         findViewById(R.id.button_show_mysettings).setOnClickListener(this);
         findViewById(R.id.button_show_sqlite).setOnClickListener(this);
+        findViewById(R.id.button_show_contentprovide).setOnClickListener(this);
         fab.setOnClickListener(this);
     }
 
@@ -133,6 +135,9 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.button_show_sqlite:
                 startActivity(new Intent(GuideActivity.this,SqliteActivity.class));
+                break;
+            case R.id.button_show_contentprovide:
+                startActivity(new Intent(GuideActivity.this,ContentProviderActivity.class));
                 break;
             default:
                 break;
