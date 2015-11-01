@@ -100,5 +100,6 @@
     <string name="action_delete_data">delete data</string>
     <string name="string_show_contentprovider">show content provider</string>
     <string name="title_activity_content_provider">ContentProviderActivity</string>
+    <string name="string_show_notification">show notification</string>
 
 </resources>

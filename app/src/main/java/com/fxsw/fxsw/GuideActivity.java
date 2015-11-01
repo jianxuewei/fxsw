@@ -36,6 +36,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.button_show_mysettings).setOnClickListener(this);
         findViewById(R.id.button_show_sqlite).setOnClickListener(this);
         findViewById(R.id.button_show_contentprovide).setOnClickListener(this);
+        findViewById(R.id.button_show_notification).setOnClickListener(this);
         fab.setOnClickListener(this);
     }
 
@@ -138,6 +139,10 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.button_show_contentprovide:
                 startActivity(new Intent(GuideActivity.this,ContentProviderActivity.class));
+                break;
+            case R.id.button_show_notification:
+                Log.d("show","NotificationActivity");
+                startActivity(new Intent(GuideActivity.this, NotificationActivity.class));
                 break;
             default:
                 break;
